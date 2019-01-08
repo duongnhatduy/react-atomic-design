@@ -1,7 +1,7 @@
 const path = require('path')
 
 const webpack = require('webpack') // eslint-disable-line import/no-extraneous-dependencies
-const MiniCssExtractPlugin = require('mini-css-extract-plugin') // eslint-disable-line import/no-extraneous-dependencies
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const resolve = require('./webpack/resolve.js')
 
@@ -76,11 +76,7 @@ module.exports = {
       //   },
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [
-          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-        ],
+        use: [true ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.svg$/,

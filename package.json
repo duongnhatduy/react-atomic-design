@@ -11,12 +11,13 @@
         "dev": "NODE_ENV=development PORT=5000 node server.dev.js",
         "storybook": "start-storybook -p 6006",
         "build-storybook": "build-storybook",
+        "styleguide": "styleguidist server",
+        "styleguide:build": "styleguidist build",
         "eslint": "eslint src webpack",
         "stylelint": "stylelint ./src/**/*.css",
         "eslint-staged": "files=`git diff --staged --diff-filter=AM --name-only | grep .js$ | tr '\n' ' '`; if [ -n \"$files\" ]; then eslint $files; fi;",
         "flow": "flow check",
         "precommit": "npm run eslint-staged && npm run stylelint && npm run flow"
-        // "prepush": "npm run eslint && npm run stylelint && npm run flow"
     },
     "dependencies": {
         "@storybook/addon-info": "^3.2.13",

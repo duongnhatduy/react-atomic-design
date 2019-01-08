@@ -5,8 +5,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin') // eslint-disabl
 
 const resolve = require('./webpack/resolve.js')
 
-const devMode = process.env.NODE_ENV !== 'production'
-
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: ['webpack-hot-middleware/client', './src/index'],
@@ -38,48 +36,21 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
       },
-      //   {
-      //     test: /\.css$/,
-      //     include: /node_modules/,
-      //     loader: ExtractTextPlugin.extract({
-      //       fallback: 'style-loader',
-      //       use: [
-      //         {
-      //           loader: 'css-loader',
-      //           options: {
-      //             modules: false,
-      //             localIdentName: '[name]__[local]___[hash:base64:5]',
-      //           },
-      //         },
-      //       ],
-      //     }),
-      //   },
-      //   {
-      //     test: /\.css$/,
-      //     exclude: /node_modules/,
-      //     loader: ExtractTextPlugin.extract({
-      //       fallback: 'style-loader',
-      //       use: [
-      //         {
-      //           loader: 'css-loader',
-      //           options: {
-      //             modules: true,
-      //             importLoaders: 2,
-      //             localIdentName: '[name]__[local]___[hash:base64:5]',
-      //           },
-      //         },
-      //         {
-      //           loader: 'postcss-loader',
-      //         },
-      //       ],
-      //     }),
-      //   },
       {
-        test: /\.(sa|sc|c)ss$/,
+        test: /\.css$/,
         use: [
-          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+          },
         ],
       },
       {
